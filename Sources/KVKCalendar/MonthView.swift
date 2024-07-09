@@ -34,6 +34,7 @@ final class MonthView: UIView {
         layout.minimumInteritemSpacing = 0
         return layout
     }()
+    var allEventes:[Event] = []
     
     init(parameters: Parameters, frame: CGRect) {
         self.parameters = parameters
@@ -49,6 +50,7 @@ final class MonthView: UIView {
     }
     
     func reloadData(_ events: [Event]) {
+        allEventes = events
         let displayableValues = parameters.monthData.reloadEventsInDays(events: events,
                                                                         date: parameters.monthData.date)
         delegate?.didDisplayEvents(displayableValues.events, dates: displayableValues.dates, type: .month)
@@ -363,11 +365,16 @@ extension MonthView: UICollectionViewDataSource, UICollectionViewDataSourcePrefe
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         parameters.monthData.data.months[section].days.count
     }
+    private func updateEventForTheDay(day:Day)->[Event]{
     
+        return allEventes.filter({style.calendar.isDate(day.date!, inSameDayAs: $0.start)})
+//        return allEventes.filter({$0.start.kvkDay == day.date?.kvkDay && $0.start.kvkMonth == day.date?.kvkMonth && $0.start.kvkYear == day.date?.kvkYear})
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = getActualCachedDay(indexPath: indexPath)
-        guard let day = item.day else { return UICollectionViewCell() }
-        
+        guard var day = item.day else { return UICollectionViewCell() }
+        let finalEventForDay = day.events.isEmpty ? updateEventForTheDay(day: day) : day.events
+        day.events = finalEventForDay
         if let cell = dataSource?.dequeueCell(parameter: .init(date: day.date, type: day.type, events: day.events),
                                               type: .month,
                                               view: collectionView,

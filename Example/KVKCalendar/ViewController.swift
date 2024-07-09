@@ -41,6 +41,7 @@ final class ViewController: UIViewController, KVKCalendarSettings, KVKCalendarDa
         let calendar = KVKCalendarView(frame: frame, date: selectDate, style: style)
         calendar.delegate = self
         calendar.dataSource = self
+        calendar.set(type: .month)
         return calendar
     }()
     
@@ -57,7 +58,7 @@ final class ViewController: UIViewController, KVKCalendarSettings, KVKCalendarDa
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        selectDate = defaultDate
+        //selectDate = defaultDate
     }
     
     required init?(coder: NSCoder) {
@@ -86,9 +87,9 @@ final class ViewController: UIViewController, KVKCalendarSettings, KVKCalendarDa
     }
     
     @objc private func reloadCalendarStyle() {
-        var updatedStyle = calendarView.style
-        updatedStyle.timeSystem = calendarView.style.timeSystem == .twentyFour ? .twelve : .twentyFour
-        calendarView.updateStyle(updatedStyle)
+//        var updatedStyle = calendarView.style
+//        updatedStyle.timeSystem = calendarView.style.timeSystem == .twentyFour ? .twelve : .twentyFour
+//        calendarView.updateStyle(updatedStyle)
         calendarView.reloadData()
     }
     

@@ -13,6 +13,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		7EE68217CEB3B479A0D68D0B /* Pods_KVKCalendar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF73D449FF3DFB1BF1063AD /* Pods_KVKCalendar_Example.framework */; };
 		EB7697CCE6961FA0161D3D2B /* Pods_KVKCalendar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF73D449FF3DFB1BF1063AD /* Pods_KVKCalendar_Example.framework */; };
 		F9005843280AF4B80064E546 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9005842280AF4B80064E546 /* CalendarView.swift */; };
 		F91321AA21DE6CE60076B714 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = F91321A921DE6CE60076B714 /* events.json */; };
@@ -31,7 +32,6 @@
 		F9E6F700281F0C13000AEADD /* EventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91321AB21DF64DF0076B714 /* EventViewer.swift */; };
 		F9E6F701281F0C13000AEADD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		F9E6F702281F0C13000AEADD /* CustomDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95EFF3925277B4600EA6748 /* CustomDayCell.swift */; };
-		F9E6F704281F0C13000AEADD /* Pods_KVKCalendar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF73D449FF3DFB1BF1063AD /* Pods_KVKCalendar_Example.framework */; };
 		F9E6F706281F0C13000AEADD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		F9E6F707281F0C13000AEADD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		F9E6F708281F0C13000AEADD /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = F91321A921DE6CE60076B714 /* events.json */; };
@@ -51,6 +51,7 @@
 		00AAA995A5A076762D4849BC /* Pods_KVKCalendar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KVKCalendar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B5FEFB2D360F92B4D819F5A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		0C4A28780B0318237E04234C /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
+		23D1CE7786DB80C4C4ABAC74 /* Pods-KVKCalendar_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KVKCalendar_Example.release.xcconfig"; path = "Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3D1741B81199E2ED13C0E0BC /* Pods-KVKCalendar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KVKCalendar_Tests.debug.xcconfig"; path = "Target Support Files/Pods-KVKCalendar_Tests/Pods-KVKCalendar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* KVKCalendar_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KVKCalendar_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,9 +63,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		697E7B6483F2B851D8D71A41 /* KVKCalendar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KVKCalendar.podspec; path = ../KVKCalendar.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		698140747E068198BB137E03 /* Pods-KVKCalendar_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KVKCalendar_Example.debug.xcconfig"; path = "Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		ACBB2CC1E98CB1A14D4601FD /* Pods-KVKCalendar_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KVKCalendar_Example.debug.xcconfig"; path = "Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BBA5555F4434EF626F6DCFF0 /* Pods-KVKCalendar_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KVKCalendar_Tests.release.xcconfig"; path = "Target Support Files/Pods-KVKCalendar_Tests/Pods-KVKCalendar_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		C64C5D6AC10D0094FEEF80DC /* Pods-KVKCalendar_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KVKCalendar_Example.release.xcconfig"; path = "Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CDF73D449FF3DFB1BF1063AD /* Pods_KVKCalendar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KVKCalendar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9005842280AF4B80064E546 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		F91321A921DE6CE60076B714 /* events.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
@@ -85,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB7697CCE6961FA0161D3D2B /* Pods_KVKCalendar_Example.framework in Frameworks */,
+				7EE68217CEB3B479A0D68D0B /* Pods_KVKCalendar_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9E6F704281F0C13000AEADD /* Pods_KVKCalendar_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,10 +188,10 @@
 		AD447977492396FFD74B0D2A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				698140747E068198BB137E03 /* Pods-KVKCalendar_Example.debug.xcconfig */,
-				C64C5D6AC10D0094FEEF80DC /* Pods-KVKCalendar_Example.release.xcconfig */,
 				3D1741B81199E2ED13C0E0BC /* Pods-KVKCalendar_Tests.debug.xcconfig */,
 				BBA5555F4434EF626F6DCFF0 /* Pods-KVKCalendar_Tests.release.xcconfig */,
+				ACBB2CC1E98CB1A14D4601FD /* Pods-KVKCalendar_Example.debug.xcconfig */,
+				23D1CE7786DB80C4C4ABAC74 /* Pods-KVKCalendar_Example.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -261,11 +261,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9E6F70B281F0C13000AEADD /* Build configuration list for PBXNativeTarget "KVKCalendar_Example_SwiftUI" */;
 			buildPhases = (
-				F9E6F6F9281F0C13000AEADD /* [CP] Check Pods Manifest.lock */,
 				F9E6F6FA281F0C13000AEADD /* Sources */,
 				F9E6F703281F0C13000AEADD /* Frameworks */,
 				F9E6F705281F0C13000AEADD /* Resources */,
-				F9E6F709281F0C13000AEADD /* [CP] Embed Pods Frameworks */,
 				F9E6F70A281F0C13000AEADD /* ShellScript */,
 			);
 			buildRules = (
@@ -377,13 +375,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KVKCalendar/KVKCalendar.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVKCalendar.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -428,46 +425,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		F9E6F6F9281F0C13000AEADD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KVKCalendar_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F9E6F709281F0C13000AEADD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KVKCalendar/KVKCalendar.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVKCalendar.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KVKCalendar_Example/Pods-KVKCalendar_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		F9E6F70A281F0C13000AEADD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -664,13 +621,13 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 698140747E068198BB137E03 /* Pods-KVKCalendar_Example.debug.xcconfig */;
+			baseConfigurationReference = ACBB2CC1E98CB1A14D4601FD /* Pods-KVKCalendar_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KVKCalendar_Example.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
-				DEVELOPMENT_TEAM = P44LMMDHV3;
+				DEVELOPMENT_TEAM = LY2J6G34NZ;
 				INFOPLIST_FILE = KVKCalendar/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -692,13 +649,13 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C64C5D6AC10D0094FEEF80DC /* Pods-KVKCalendar_Example.release.xcconfig */;
+			baseConfigurationReference = 23D1CE7786DB80C4C4ABAC74 /* Pods-KVKCalendar_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KVKCalendar_Example.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
-				DEVELOPMENT_TEAM = P44LMMDHV3;
+				DEVELOPMENT_TEAM = LY2J6G34NZ;
 				INFOPLIST_FILE = KVKCalendar/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -722,7 +679,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3D1741B81199E2ED13C0E0BC /* Pods-KVKCalendar_Tests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = P44LMMDHV3;
+				DEVELOPMENT_TEAM = LY2J6G34NZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -748,7 +705,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BBA5555F4434EF626F6DCFF0 /* Pods-KVKCalendar_Tests.release.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = P44LMMDHV3;
+				DEVELOPMENT_TEAM = LY2J6G34NZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -768,12 +725,11 @@
 		};
 		F9E6F70C281F0C13000AEADD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 698140747E068198BB137E03 /* Pods-KVKCalendar_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KVKCalendar_Example.entitlements;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = P44LMMDHV3;
+				DEVELOPMENT_TEAM = LY2J6G34NZ;
 				INFOPLIST_FILE = "$(SRCROOT)/KVKCalendar_Example_SwiftUI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
@@ -795,12 +751,11 @@
 		};
 		F9E6F70D281F0C13000AEADD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C64C5D6AC10D0094FEEF80DC /* Pods-KVKCalendar_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KVKCalendar_Example.entitlements;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = P44LMMDHV3;
+				DEVELOPMENT_TEAM = LY2J6G34NZ;
 				INFOPLIST_FILE = "$(SRCROOT)/KVKCalendar_Example_SwiftUI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
