@@ -309,7 +309,14 @@ final class MonthCell: KVKCollectionViewCell {
     
     @objc private func GenerateNewEvent(gesture: UILongPressGestureRecognizer) {
         guard let date = day.date else { return }
-        delegate?.didAddNewEvent(date: date)
+        switch gesture.state {
+       
+        case .began:
+            delegate?.didAddNewEvent(date: date)
+        default:
+            break
+        }
+        
     }
     
     @objc private func activateMovingEvent(gesture: UILongPressGestureRecognizer) {
