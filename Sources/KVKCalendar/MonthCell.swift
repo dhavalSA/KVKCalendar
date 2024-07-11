@@ -42,14 +42,14 @@ final class MonthCell: KVKCollectionViewCell {
     }
     private var allDayStyle = AllDayStyle()
     
-    private lazy var panGesture: UIPanGestureRecognizer = {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(processMovingEvent))
-        panGesture.delegate = self
-        return panGesture
-    }()
+//    private lazy var panGesture: UIPanGestureRecognizer = {
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(processMovingEvent))
+//        panGesture.delegate = self
+//        return panGesture
+//    }()
     
-    private lazy var longGesture: UILongPressGestureRecognizer = {
-        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(activateMovingEvent))
+    private lazy var longGestureForNewEvent: UILongPressGestureRecognizer = {
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(GenerateNewEvent))
         longGesture.delegate = self
         longGesture.minimumPressDuration = style.event.minimumPressDuration
         return longGesture
@@ -174,7 +174,12 @@ final class MonthCell: KVKCollectionViewCell {
                     label.tag = event.hash
                     
                     if style.event.states.contains(.move) && Platform.currentInterface != .phone && !event.isAllDay {
+                        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(activateMovingEvent))
+                        longGesture.delegate = self
+                        longGesture.minimumPressDuration = style.event.minimumPressDuration
                         label.addGestureRecognizer(longGesture)
+                        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(processMovingEvent))
+                        panGesture.delegate = self
                         label.addGestureRecognizer(panGesture)
                     }
                     contentView.addSubview(label)
@@ -268,7 +273,7 @@ final class MonthCell: KVKCollectionViewCell {
         dateLabel.frame = dateFrame
         dateLabel.tag = defaultTagView
         contentView.addSubview(dateLabel)
-                
+        contentView.addGestureRecognizer(longGestureForNewEvent)
         if #available(iOS 13.4, *) {
             contentView.addPointInteraction()
         }
@@ -300,6 +305,11 @@ final class MonthCell: KVKCollectionViewCell {
         default:
             break
         }
+    }
+    
+    @objc private func GenerateNewEvent(gesture: UILongPressGestureRecognizer) {
+        guard let date = day.date else { return }
+        delegate?.didAddNewEvent(date: date)
     }
     
     @objc private func activateMovingEvent(gesture: UILongPressGestureRecognizer) {
@@ -485,7 +495,7 @@ protocol MonthCellDelegate: AnyObject {
     func didEndMoveEvent(gesture: UILongPressGestureRecognizer)
     func didChangeMoveEvent(gesture: UIPanGestureRecognizer)
     func dequeueViewEvents(_ events: [Event], date: Date, frame: CGRect) -> UIView?
-    
+    func didAddNewEvent(date: Date)
 }
 
 #endif

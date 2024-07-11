@@ -578,6 +578,12 @@ extension MonthView: MonthCellDelegate {
         delegate?.didSelectMore(date, frame: frame)
     }
     
+    func didAddNewEvent(date: Date) {
+        var newEvent = Event(ID: Event.idForNewEvent)
+        newEvent.title = TextEvent(timeline: style.event.textForNewEvent)
+        delegate?.didAddNewEvent(newEvent, date)
+    }
+    
     func didStartMoveEvent(_ event: EventViewGeneral, snapshot: UIView?, gesture: UILongPressGestureRecognizer) {
         let point = gesture.location(in: collectionView)
         
@@ -626,7 +632,8 @@ extension MonthView: MonthCellDelegate {
         endComponents.hour = event.end.kvkHour
         endComponents.minute = event.end.kvkMinute
         let endDate = style.calendar.date(from: endComponents)
-        
+        guard let startDate = startDate, let endDate = endDate else  {return }
+        guard !style.calendar.isDate(event.start, inSameDayAs: startDate),!style.calendar.isDate(event.end, inSameDayAs: endDate) else { return }
         delegate?.didChangeEvent(event, start: startDate, end: endDate)
         scrollToDate(newDate, animated: true)
         didSelectDates([newDate], indexPath: index)
