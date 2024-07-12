@@ -83,7 +83,10 @@ final class ViewController: UIViewController, KVKCalendarSettings, KVKCalendarDa
         super.viewWillLayoutSubviews()
         var frame = view.frame
         frame.origin.y = 0
-        calendarView.reloadFrame(frame)
+        DispatchQueue.main.async {
+            self.calendarView.reloadFrame(frame)
+        }
+        
     }
     
     @objc private func reloadCalendarStyle() {
@@ -122,7 +125,9 @@ final class ViewController: UIViewController, KVKCalendarSettings, KVKCalendarDa
         
         loadEvents(dateFormat: style.timeSystem.format) { [weak self] (events) in
             if let style = self?.style {
-                self?.calendarView.updateStyle(style)
+                DispatchQueue.main.async {
+                    self?.calendarView.updateStyle(style)                    
+                }
             }
             self?.events = events
         }
@@ -195,9 +200,9 @@ extension ViewController: CalendarDataSource {
         handleCustomEventView(event: event, style: style, frame: frame)
     }
     
-    func dequeueCell<T>(parameter: CellParameter, type: CalendarType, view: T, indexPath: IndexPath) -> KVKCalendarCellProtocol? where T: UIScrollView {
-        handleCell(parameter: parameter, type: type, view: view, indexPath: indexPath)
-    }
+//    func dequeueCell<T>(parameter: CellParameter, type: CalendarType, view: T, indexPath: IndexPath) -> KVKCalendarCellProtocol? where T: UIScrollView {
+//        handleCell(parameter: parameter, type: type, view: view, indexPath: indexPath)
+//    }
     
     func willDisplayEventViewer(date: Date, frame: CGRect) -> UIView? {
         eventViewer.frame = frame

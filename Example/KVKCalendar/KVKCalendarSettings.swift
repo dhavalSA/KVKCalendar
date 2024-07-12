@@ -193,12 +193,12 @@ extension KVKCalendarSettings {
     
     func createCalendarStyle() -> Style {
         var style = Style()
-        style.timeline.isHiddenStubEvent = false
+        style.timeline.isHiddenStubEvent = true
         style.startWeekDay = .sunday
         style.systemCalendars = ["Calendar1", "Calendar2", "Calendar3"]
         style.event.iconFile = UIImage(systemName: "paperclip")
         style.timeline.scrollLineHourMode = .onlyOnInitForDate(defaultDate)
-        style.timeline.showLineHourMode = .always
+        style.timeline.showLineHourMode = .today
         style.month.autoSelectionDateWhenScrolling = false
         style.timeline.useDefaultCorderHeader = true
         style.month.selectionMode = .single

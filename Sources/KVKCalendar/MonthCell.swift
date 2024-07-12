@@ -28,6 +28,12 @@ final class MonthCell: KVKCollectionViewCell {
         return label
     }()
     
+    private let viewAddEvent: UIView = {
+        let viewAddEvent = UIView()
+        viewAddEvent.backgroundColor = .yellow
+        return viewAddEvent
+    }()
+    
     private func timeFormatter(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = style.timeSystem.format
@@ -51,7 +57,7 @@ final class MonthCell: KVKCollectionViewCell {
     private lazy var longGestureForNewEvent: UILongPressGestureRecognizer = {
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(GenerateNewEvent))
         longGesture.delegate = self
-        longGesture.minimumPressDuration = style.event.minimumPressDuration
+        longGesture.minimumPressDuration = style.event.minimumPressDuration + 0.5
         return longGesture
     }()
     
@@ -259,6 +265,10 @@ final class MonthCell: KVKCollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.viewAddEvent.frame = CGRect(origin: .zero, size: frame.size)
+        self.viewAddEvent.tag = self.defaultTagView
+//        self.contentView.addSubview(self.viewAddEvent)
+        self.contentView.addGestureRecognizer(self.longGestureForNewEvent)
         
         var dateFrame = frame
         if Platform.currentInterface != .phone {
@@ -273,10 +283,11 @@ final class MonthCell: KVKCollectionViewCell {
         dateLabel.frame = dateFrame
         dateLabel.tag = defaultTagView
         contentView.addSubview(dateLabel)
-        contentView.addGestureRecognizer(longGestureForNewEvent)
+        
         if #available(iOS 13.4, *) {
             contentView.addPointInteraction()
         }
+       
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -342,8 +353,10 @@ final class MonthCell: KVKCollectionViewCell {
             let snapshot = event.isAllDay ? view.snapshotView(afterScreenUpdates: false) : snapshotLabel
             let eventView = EventViewGeneral(style: style, event: event, frame: view.frame)
             delegate?.didStartMoveEvent(eventView, snapshot: snapshot, gesture: gesture)
+            contentView.gestureRecognizers?.forEach { $0.isEnabled = false }
         case .cancelled, .ended, .failed:
             delegate?.didEndMoveEvent(gesture: gesture)
+            contentView.gestureRecognizers?.forEach { $0.isEnabled = true }
         default:
             break
         }
