@@ -67,7 +67,7 @@ final class ViewController: UIViewController, KVKCalendarSettings, KVKCalendarDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "KVKCalendar"
+        navigationItem.title = "OTOCalendar"
         view.backgroundColor = .systemBackground
         view.addSubview(calendarView)
         setupBarButtons()
@@ -83,10 +83,7 @@ final class ViewController: UIViewController, KVKCalendarSettings, KVKCalendarDa
         super.viewWillLayoutSubviews()
         var frame = view.frame
         frame.origin.y = 0
-        DispatchQueue.main.async {
-            self.calendarView.reloadFrame(frame)
-        }
-        
+        self.calendarView.reloadFrame(frame)
     }
     
     @objc private func reloadCalendarStyle() {
@@ -125,9 +122,7 @@ final class ViewController: UIViewController, KVKCalendarSettings, KVKCalendarDa
         
         loadEvents(dateFormat: style.timeSystem.format) { [weak self] (events) in
             if let style = self?.style {
-                DispatchQueue.main.async {
-                    self?.calendarView.updateStyle(style)                    
-                }
+                self?.calendarView.updateStyle(style)
             }
             self?.events = events
         }

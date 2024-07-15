@@ -30,6 +30,16 @@
             "text_color": "#0000ff",
             "title": "C Event",
             "files": []
+        },{
+            "all_day": 0,
+            "border_color": "#000000",
+            "color": "#ff0000",
+            "end": "2024-07-14T09:00:00+01:00",
+            "id": "1404",
+            "start": "2024-07-14T09:30:00+01:00",
+            "text_color": "#0000ff",
+            "title": "A Event",
+            "files": []
         }
     ]
 }
