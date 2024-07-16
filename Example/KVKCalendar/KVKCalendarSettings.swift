@@ -57,7 +57,7 @@ extension KVKCalendarSettings where Self: KVKCalendarDataModel {
         var newEvent = event
         
         guard let start = date,
-              let end = Calendar.current.date(byAdding: .minute, value: 30, to: start) else { return nil }
+              let end = Calendar.current.date(byAdding: .minute, value: style.event.newEventStep, to: start) else { return nil }
         
         let startTime = timeFormatter(date: start, format: style.timeSystem.format, local: style.locale)
         let endTime = timeFormatter(date: end, format: style.timeSystem.format, local: style.locale)
@@ -202,6 +202,8 @@ extension KVKCalendarSettings {
         style.month.autoSelectionDateWhenScrolling = false
         style.timeline.useDefaultCorderHeader = true
         style.month.selectionMode = .single
+        style.timeline.eventPreviewSize = CGSize(width: 200, height: 60)
+        style.event.newEventStep = 120
         return style
     }
 
