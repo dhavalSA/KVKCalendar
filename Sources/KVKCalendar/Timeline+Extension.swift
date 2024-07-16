@@ -449,10 +449,11 @@ extension TimelineView {
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         case .ended, .failed, .cancelled:
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            
+            print(newEvent.start)
+            print(time)
             delegate?.didAddNewEvent(newEvent,
                                      minute: time.minute,
-                                     hour: time.hour,
+                                     hour: max(time.hour, 0),
                                      point: point)
         default:
             break
@@ -662,6 +663,7 @@ extension TimelineView: EventDelegate {
         
         location.y = (location.y - eventPreviewYOffset) - style.timeline.offsetEvent - 6
         let startTime = movingMinuteLabel.time
+        print(startTime.hour)
         if !event.isNew {
             var newDateEvent: Date?
             var updatedEvent = event
@@ -675,9 +677,9 @@ extension TimelineView: EventDelegate {
             }
             delegate?.didChangeEvent(updatedEvent,
                                      minute: startTime.minute,
-                                     hour: startTime.hour,
+                                     hour: startTime.hour == -1 ? 0 : startTime.hour,
                                      point: location,
-                                     newDate: newDateEvent)
+                                     newDate: newDateEvent ?? event.start)
         }
         
         shadowView.removeFromSuperview()
