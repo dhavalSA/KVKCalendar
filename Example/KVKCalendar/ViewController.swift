@@ -192,10 +192,10 @@ extension ViewController: CalendarDataSource {
         handleEvents(systemEvents: systemEvents)
     }
     
-    func willDisplayEventView(_ event: Event, frame: CGRect, date: Date?) -> EventViewGeneral? {
-        handleCustomEventView(event: event, style: style, frame: frame)
-    }
-    
+//    func willDisplayEventView(_ event: Event, frame: CGRect, date: Date?) -> EventViewGeneral? {
+//        handleCustomEventView(event: event, style: style, frame: frame)
+//    }
+//    
 //    func dequeueCell<T>(parameter: CellParameter, type: CalendarType, view: T, indexPath: IndexPath) -> KVKCalendarCellProtocol? where T: UIScrollView {
 //        handleCell(parameter: parameter, type: type, view: view, indexPath: indexPath)
 //    }

@@ -58,7 +58,7 @@ final class EventView: EventViewGeneral {
         
         textView.isHidden = textView.frame.width < 20
         addSubview(textView)
-        
+        print("\(textView)")
         if #available(iOS 13.4, *) {
             addPointInteraction()
         }
