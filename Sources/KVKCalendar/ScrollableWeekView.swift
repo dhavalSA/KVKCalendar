@@ -29,7 +29,7 @@ final class ScrollableWeekView: UIView {
     private var isAnimate = false
     private var lastContentOffset: CGFloat = 0
     private var trackingTranslation: CGFloat?
-    
+    private var allEvents:[Event] = []
     private var weeks: [[Day]] {
         params.weeks
     }
@@ -131,7 +131,7 @@ final class ScrollableWeekView: UIView {
         scrollToDate(date, animated: isAnimate, isDelay: isDelay)
         collectionView.reloadData()
     }
-    
+   
     @discardableResult
     func calculateDateWithOffset(_ offset: Int, needScrollToDate: Bool) -> Date {
         guard let nextDate = calendar.date(byAdding: .day, value: offset, to: date) else { return date }
@@ -234,7 +234,7 @@ extension ScrollableWeekView: CalendarSettingProtocol {
         scrollToDate(date, animated: true)
     }
     
-    func reloadCustomCornerHeaderViewIfNeeded() {
+    func reloadCustomCornerHeaderViewIfNeeded(events:[Event]? = nil) {
         if let cornerHeader = dataSource?.dequeueCornerHeader(
             date: date,
             frame: CGRect(x: 0, y: 0,
@@ -247,6 +247,10 @@ extension ScrollableWeekView: CalendarSettingProtocol {
                 subview.removeFromSuperview()
             }
             addSubview(cornerHeader)
+        }
+        if let events = events,style.week.showEventIndicator{
+            allEvents  = events
+            collectionView.reloadData()
         }
     }
     
@@ -337,7 +341,7 @@ extension ScrollableWeekView: CalendarSettingProtocol {
         
         addSubview(bottomLineView)
         bottomLineView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let left = bottomLineView.leftAnchor.constraint(equalTo: leftAnchor)
         let right = bottomLineView.rightAnchor.constraint(equalTo: rightAnchor)
         let bottom = bottomLineView.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -369,8 +373,8 @@ extension ScrollableWeekView: CalendarSettingProtocol {
     
     private func calculateFrameForCollectionViewIfNeeded(_ frame: inout CGRect) {
         guard !style.headerScroll.isHiddenSubview else { return }
-        
-        frame.size.height = style.headerScroll.heightHeaderWeek
+        let additionalHeight = style.week.showEventIndicator ? style.week.eventIndicatorSize.height + 5 : 0
+        frame.size.height = style.headerScroll.heightHeaderWeek + additionalHeight
         if Platform.currentInterface != .phone {
             frame.origin.y = style.headerScroll.heightSubviewHeader
         }
@@ -395,9 +399,14 @@ extension ScrollableWeekView: UICollectionViewDataSource {
         weeks[section].count
     }
     
+    private func updateEventForTheDay(day:Day)->[Event]{
+        return allEvents.filter({$0.isDateBetweenStartAndEnd(date: day.date!)})
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let day = weeks[indexPath.section][indexPath.row]
-        
+        var day = weeks[indexPath.section][indexPath.row]
+        let finalEventForDay = day.events.isEmpty ? updateEventForTheDay(day: day) : day.events
+        day.events = finalEventForDay
         if let cell = dataSource?.dequeueCell(parameter: .init(date: day.date, type: day.type, events: day.events), type: type, view: collectionView, indexPath: indexPath) as? UICollectionViewCell {
             return cell
         } else {
@@ -413,6 +422,8 @@ extension ScrollableWeekView: UICollectionViewDataSource {
                     cell.padStyle = style
                     cell.day = day
                     cell.selectDate = date
+                    cell.eventIndecatorView.isHidden = !(style.week.showEventIndicator && day.events.count > 0)
+                    
                 }
             }
         }

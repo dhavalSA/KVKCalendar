@@ -204,6 +204,7 @@ extension KVKCalendarSettings {
         style.month.selectionMode = .single
         style.timeline.eventPreviewSize = CGSize(width: 200, height: 60)
         style.event.newEventStep = 120
+        style.week.showEventIndicator = true 
         return style
     }
 

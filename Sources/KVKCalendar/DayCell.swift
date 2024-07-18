@@ -40,6 +40,11 @@ class DayCell: UICollectionViewCell {
         return view
     }()
     
+    var eventIndecatorView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     var style = Style() {
         didSet {
             titleLabel.font = style.headerScroll.fontNameDay
@@ -47,6 +52,11 @@ class DayCell: UICollectionViewCell {
             
             dateLabel.font = style.headerScroll.fontDate
             dateLabel.textColor = style.headerScroll.colorDate
+            if style.week.showEventIndicator{
+                eventIndecatorView.backgroundColor = style.week.eventIndicatorColor
+            }else{
+                eventIndecatorView.removeFromSuperview()
+            }
         }
     }
         

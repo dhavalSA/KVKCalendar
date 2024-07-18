@@ -292,6 +292,10 @@ public struct WeekStyle {
     public var showVerticalDayDivider: Bool = true
     public var daysInOneWeek: UInt = 7
     public var viewMode: TimelineStyle.ViewMode = .default
+    public var spaceBetweenDayTiteAndDate:CGFloat = 3.0
+    public var eventIndicatorSize: CGSize = CGSize(width: 5, height: 5)
+    public var eventIndicatorColor: UIColor = .blue
+    public var showEventIndicator:Bool = false
     
     var maxDays: Int {
         guard 2...6 ~= daysInOneWeek else { return 7 }

@@ -34,7 +34,7 @@ final class MonthView: UIView {
         layout.minimumInteritemSpacing = 0
         return layout
     }()
-    var allEventes:[Event] = []
+    var allEvents:[Event] = []
     
     init(parameters: Parameters, frame: CGRect) {
         self.parameters = parameters
@@ -50,7 +50,7 @@ final class MonthView: UIView {
     }
     
     func reloadData(_ events: [Event]) {
-        allEventes = events
+        allEvents = events
         let displayableValues = parameters.monthData.reloadEventsInDays(events: events,
                                                                         date: parameters.monthData.date)
         delegate?.didDisplayEvents(displayableValues.events, dates: displayableValues.dates, type: .month)
@@ -365,11 +365,11 @@ extension MonthView: UICollectionViewDataSource, UICollectionViewDataSourcePrefe
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         parameters.monthData.data.months[section].days.count
     }
-    private func updateEventForTheDay(day:Day)->[Event]{
     
-        return allEventes.filter({style.calendar.isDate(day.date!, inSameDayAs: $0.start)})
-//        return allEventes.filter({$0.start.kvkDay == day.date?.kvkDay && $0.start.kvkMonth == day.date?.kvkMonth && $0.start.kvkYear == day.date?.kvkYear})
+    private func updateEventForTheDay(day:Day)->[Event]{
+        return allEvents.filter({$0.isDateBetweenStartAndEnd(date: day.date!)})
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = getActualCachedDay(indexPath: indexPath)
         guard var day = item.day else { return UICollectionViewCell() }
@@ -624,22 +624,30 @@ extension MonthView: MonthCellDelegate {
         startComponents.hour = event.start.kvkHour
         startComponents.minute = event.start.kvkMinute
         let startDate = style.calendar.date(from: startComponents)
+        guard let startDate = startDate else { return }
+        
+        let toalEventDays = event.totalEventDays(calender: style.calendar)
+        guard let tempEndDate = calculateEndDate(startDate: startDate, totalEventDays: toalEventDays) else { return }
         
         var endComponents = DateComponents()
-        endComponents.year = newDate.kvkYear
-        endComponents.month = newDate.kvkMonth
-        endComponents.day = newDate.kvkDay
+        endComponents.year = tempEndDate.kvkYear
+        endComponents.month = tempEndDate.kvkMonth
+        endComponents.day = tempEndDate.kvkDay
         endComponents.hour = event.end.kvkHour
         endComponents.minute = event.end.kvkMinute
         let endDate = style.calendar.date(from: endComponents)
-        guard let startDate = startDate, let endDate = endDate else  {return }
+        guard  let endDate = endDate else  {return }
         guard !style.calendar.isDate(event.start, inSameDayAs: startDate),!style.calendar.isDate(event.end, inSameDayAs: endDate) else { return }
         delegate?.didChangeEvent(event, start: startDate, end: endDate)
         scrollToDate(newDate, animated: true)
         didSelectDates([newDate], indexPath: index)
         collectionView?.isScrollEnabled = true
     }
-    
+    func calculateEndDate(startDate: Date, totalEventDays: Int) -> Date? {
+      let calendar = Calendar.current
+      let components = DateComponents(day: totalEventDays)
+      return calendar.date(byAdding: components, to: startDate)
+    }
     func didChangeMoveEvent(gesture: UIPanGestureRecognizer) {
         let point = gesture.location(in: collectionView)
         guard (collectionView?.frame.width ?? 0) >= (point.x + 20), (point.x - 20) >= 0 else { return }

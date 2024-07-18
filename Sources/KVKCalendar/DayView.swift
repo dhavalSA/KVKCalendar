@@ -40,8 +40,8 @@ public final class DayView: UIView {
     init(parameters: Parameters, frame: CGRect) {
         self.parameters = parameters
         self.timelineScale = parameters.style.timeline.scale?.min ?? 1
+        scrollableWeekView.style = parameters.style
         super.init(frame: frame)
-        
         if case .onlyOnInitForDate = parameters.style.timeline.scrollLineHourMode {
             scrollToCurrentTimeOnlyOnInit = true
         }
@@ -57,7 +57,7 @@ public final class DayView: UIView {
     }
     
     func reloadData(_ events: [Event]) {
-        scrollableWeekView.reloadCustomCornerHeaderViewIfNeeded()
+        scrollableWeekView.reloadCustomCornerHeaderViewIfNeeded(events: events)
         parameters.data.recurringEvents = events.filter { $0.recurringType != .none }
         parameters.data.events = parameters.data.filterEvents(events, date: parameters.data.date)
         timelinePage.timelineView?.create(dates: [parameters.data.date],
@@ -347,14 +347,16 @@ extension DayView: CalendarSettingProtocol {
     
     private func setupScrollableWeekView() -> ScrollableWeekView {
         let heightView: CGFloat
+        let additionalHeight = style.week.showEventIndicator ? style.week.eventIndicatorSize.height + 5 : 0
         if style.headerScroll.isHiddenSubview {
-            heightView = style.headerScroll.heightHeaderWeek
+            heightView = style.headerScroll.heightHeaderWeek + additionalHeight
         } else {
-            heightView = style.headerScroll.heightHeaderWeek + style.headerScroll.heightSubviewHeader
+            heightView = style.headerScroll.heightHeaderWeek + style.headerScroll.heightSubviewHeader + additionalHeight
         }
+       
         let view = ScrollableWeekView(parameters: .init(frame: CGRect(x: 0, y: 0,
                                                                       width: frame.width,
-                                                                      height: heightView),
+                                                                      height: heightView ),
                                                         weeks: parameters.data.daysBySection,
                                                         date: parameters.data.date,
                                                         type: .day,
@@ -393,10 +395,11 @@ extension DayView: CalendarSettingProtocol {
     
     private func setupTopBackgroundView() -> UIView {
         let heightView: CGFloat
+        let additionalHeight = style.week.showEventIndicator ? style.week.eventIndicatorSize.height + 5 : 0
         if style.headerScroll.isHiddenSubview {
-            heightView = style.headerScroll.heightHeaderWeek
+            heightView = style.headerScroll.heightHeaderWeek + additionalHeight
         } else {
-            heightView = style.headerScroll.heightHeaderWeek + style.headerScroll.heightSubviewHeader
+            heightView = style.headerScroll.heightHeaderWeek + style.headerScroll.heightSubviewHeader + additionalHeight
         }
         let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: heightView))
         if let blur = style.headerScroll.backgroundBlurStyle {

@@ -161,7 +161,11 @@ public struct Event {
     ///(in-progress) works only with a default (width & height)
     public var style: EventStyle? = nil
     public var systemEvent: EKEvent? = nil
-    
+    public func totalEventDays(calender: Calendar = Calendar.current) -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: start, to: end)
+        return components.day ?? 0
+    }
     public init(ID: String) {
         self.ID = ID
         
@@ -200,6 +204,15 @@ public struct Event {
         
         return (bgColor, txtColor)
     }
+    
+    func isDateBetweenStartAndEnd(date: Date) -> Bool {
+        let isBetween = Calendar.current.compare(start, to: date, toGranularity: .day) == .orderedAscending &&
+                        Calendar.current.compare(end, to: date, toGranularity: .day) == .orderedDescending
+
+        return isBetween || Calendar.current.compare(start, to: date , toGranularity: .day) == .orderedSame ||
+               Calendar.current.compare(end, to: date, toGranularity: .day) == .orderedSame
+      
+      }
 }
 
 extension Event {
