@@ -46,6 +46,12 @@ final class DayPhoneCell: DayCell {
             let value = dotView.frame.width / 2
             dotView.setRoundCorners(style.headerScroll.dotCorners, radius: CGSize(width: value, height: value))
         }
+        
+        eventIndecatorView.frame = CGRect(origin: CGPoint(x: dotView.center.x - style.week.spaceBetweenDayTiteAndDate, y: dateFrame.origin.y + heightDate + 3), size: style.week.eventIndicatorSize)
+        
+        contentView.addSubview(eventIndecatorView)
+        let radiusForEventIndicator = eventIndecatorView.frame.width / 2
+        eventIndecatorView.setRoundCorners(radius: CGSize(width: radiusForEventIndicator, height: radiusForEventIndicator))
     }
     
     required init?(coder aDecoder: NSCoder) {

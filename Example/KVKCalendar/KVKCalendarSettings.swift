@@ -221,7 +221,18 @@ extension KVKCalendarSettings {
         formatter.locale = local
         return formatter.date(from: date) ?? Date()
     }
-    
+    func convertUTCToLocalTime(date: String, local: Locale) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        guard let utcDate = dateFormatter.date(from: date) else {
+            return Date()
+        }
+        dateFormatter.locale = local
+        dateFormatter.timeZone = TimeZone.current
+        return dateFormatter.date(from: dateFormatter.string(from: utcDate)) ?? Date()
+    }
 }
 
 final class CustomViewEvent: EventViewGeneral {

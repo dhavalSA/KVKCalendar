@@ -262,10 +262,12 @@ extension WeekView: CalendarSettingProtocol {
     
     private func setupTopBackgroundView() -> UIView {
         let heightView: CGFloat
+        let additionalHeight = style.week.showEventIndicator ? style.week.eventIndicatorSize.height + 5 : 0
+        
         if style.headerScroll.isHiddenSubview {
-            heightView = style.headerScroll.heightHeaderWeek
+            heightView = style.headerScroll.heightHeaderWeek + additionalHeight
         } else {
-            heightView = style.headerScroll.heightHeaderWeek + style.headerScroll.heightSubviewHeader
+            heightView = style.headerScroll.heightHeaderWeek + style.headerScroll.heightSubviewHeader + additionalHeight
         }
         let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: heightView))
         view.backgroundColor = style.headerScroll.colorBackground
@@ -274,10 +276,12 @@ extension WeekView: CalendarSettingProtocol {
     
     private func setupScrollableWeekView() -> ScrollableWeekView {
         let heightView: CGFloat
+        let additionalHeight = style.week.showEventIndicator ? style.week.eventIndicatorSize.height + 5 : 0
+        
         if style.headerScroll.isHiddenSubview {
-            heightView = style.headerScroll.heightHeaderWeek
+            heightView = style.headerScroll.heightHeaderWeek + additionalHeight
         } else {
-            heightView = style.headerScroll.heightHeaderWeek + style.headerScroll.heightSubviewHeader
+            heightView = style.headerScroll.heightHeaderWeek + style.headerScroll.heightSubviewHeader + additionalHeight
         }
         let view = ScrollableWeekView(parameters: .init(frame: CGRect(x: 0, y: 0,
                                                                        width: frame.width, height: heightView),

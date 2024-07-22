@@ -416,6 +416,7 @@ extension ScrollableWeekView: UICollectionViewDataSource {
                     cell.phoneStyle = style
                     cell.day = day
                     cell.selectDate = date
+                    cell.eventIndecatorView.isHidden = !(style.week.showEventIndicator && day.events.count > 0)
                 }
             default:
                 return collectionView.kvkDequeueCell(indexPath: indexPath) { (cell: DayPadCell) in
