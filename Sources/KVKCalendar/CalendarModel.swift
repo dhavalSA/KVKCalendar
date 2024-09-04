@@ -137,7 +137,7 @@ public struct Event {
     /// unique identifier of Event
     public var ID: String
     public var title: TextEvent = TextEvent()
-    
+    public var description: String?
     public var start: Date = Date()
     public var end: Date = Date()
     public var color: Event.Color? = Event.Color(.systemBlue) {
